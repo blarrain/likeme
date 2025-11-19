@@ -9,10 +9,10 @@ router.get("/", postsController.getAll);
 // POST /posts
 router.post("/", postsController.addPost);
 
-// PUT /posts/:id
-// router.put("/:id", updateElement);
+// PUT /posts/like/:id
+router.put("/like/:id", postsController.likePost);
 
-// DELETE /elements/:id
+// DELETE /posts/:id
 router.delete("/:id", postsController.removePost);
 
 export default router;

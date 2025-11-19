@@ -39,8 +39,18 @@ const removePost = async (req, res) => {
 	}
 };
 
-// const getAllElements = async (req, res) => {
-//     const elementos = await findAllModel()
-//     res.json(elementos)
-// }
-export const postsController = { removePost, addPost, getAll };
+const likePost = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const post = await postsModel.like(id);
+        if (!post) {
+			return res.status(404).json({ error: 'Post no encontrado' });
+		}
+        return res.json({ message: 'Se ha agregado 1 like al post' });
+    } catch (error) {
+        console.log(`⛔ ${error}`);
+		return res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+export const postsController = { removePost, addPost, getAll, likePost };

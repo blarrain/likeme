@@ -19,15 +19,15 @@ const remove = async (id) => {
 	return rows[0];
 };
 
-/* const update = async (id) => {
-	const query = 'UPDATE posts SET done = NOT done WHERE id = $1 RETURNING *';
+const like = async (id) => {
+	const query = 'UPDATE posts SET likes = likes + 1 WHERE id = $1 RETURNING *';
 	const { rows } = await pool.query(query, [id]);
 	return rows[0];
-}; */
+}
 
 export const postsModel = {
 	findAll,
 	create,
 	remove,
-	// update,
+	like,
 };
